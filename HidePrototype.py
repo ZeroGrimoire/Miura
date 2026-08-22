@@ -6,6 +6,8 @@ import time
 _cached_monitors = None
 _last_monitors_update = 0
 
+style_path = os.path.expanduser("~/.config/waybar/style.css")
+
 with open("config.json", 'r', encoding='utf-8') as f:
     hide_config = json.load(f)
 
@@ -42,7 +44,7 @@ def launch_waybar_on(monitor):
     cfg = raw.replace("{", f'{{"output": "{monitor}",', 1)
     path = "/tmp/_waybar_cfg.json"
     open(path, "w").write(cfg)
-    subprocess.Popen(["waybar", "-c", path, "-s", "/home/fantom/.config/waybar/style.css"])
+    subprocess.Popen(["waybar", "-c", path, "-s", style_path])
 
 last_x, last_y = None, None
 visibility = 0
