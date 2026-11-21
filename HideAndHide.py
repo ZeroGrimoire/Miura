@@ -1,10 +1,15 @@
+from pathlib import Path
 import json, subprocess, os, re
 import time
 
 config_path = os.path.expanduser("~/.config/waybar/config.jsonc")
 style_path = os.path.expanduser("~/.config/waybar/style.css")
 
-with open("config.json", 'r', encoding='utf-8') as f:
+script_dir = Path(__file__).resolve().parent
+
+config_path = script_dir / "config.json"
+
+with open(config_path, 'r', encoding='utf-8') as f:
     hide_config = json.load(f)
 
 delay_in = hide_config.get("delay_in")
